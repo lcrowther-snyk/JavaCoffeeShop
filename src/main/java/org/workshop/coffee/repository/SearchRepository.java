@@ -19,12 +19,7 @@ public class SearchRepository {
     DataSource dataSource;
 
     public List<Product> searchProduct (String input) {
-        //inputを小文字に変換
-        var lowerinput = input.toLowerCase(Locale.ROOT);
-        //inputとproduct_nameかdescriptionが一致するstringクエリ文を生成
-        var query = "SELECT * FROM product WHERE LOWER(product_name) LIKE '%" + lowerinput + "%' OR LOWER(description) LIKE '%" + lowerinput + "%'";
-        //nativeQueryを使ってクエリを実行して結果を返す
-        return em.createNativeQuery(query, Product.class).getResultList();
+return null;
     }
 
 }
