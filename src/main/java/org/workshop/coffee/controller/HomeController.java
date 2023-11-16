@@ -29,7 +29,7 @@ public class HomeController {
 
     @PostMapping("/")
     public String searchProducts(Model model, @RequestParam String input) {
-         model.addAttribute("products", searchRepository.searchProduct(input));
+        model.addAttribute("products", searchRepository.searchProduct(input));
         return "index";
     }
 }

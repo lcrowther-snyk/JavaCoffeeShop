@@ -21,11 +21,19 @@ public class SearchRepository {
     public List<Product> searchProduct (String input) {
         //convert input to lowercase
         input = input.toLowerCase(Locale.ROOT);
-        //create sql query to search for products
-        String sql = "SELECT * FROM product WHERE LOWER(product_name) LIKE '%" + input + "%' OR LOWER(description) LIKE '%" + input + "%'";
+        //create sql with prepared statement
+        String sql = "SELECT * FROM product WHERE LOWER(product_name) LIKE ? OR LOWER(description) LIKE ?";
+        //create query
+        var query = em.createNativeQuery(sql, Product.class);
+        //set parameters
+        query.setParameter(1, "%" + input + "%");
+        query.setParameter(2, "%" + input + "%");
         //execute query
-        List<Product> products = em.createNativeQuery(sql, Product.class).getResultList();
+        List<Product> products = query.getResultList();
         return products;
+
+
+
     }
 
 }
