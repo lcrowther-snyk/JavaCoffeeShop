@@ -1,4 +1,4 @@
-FROM maven:3.9.6-amazoncorretto-21
+FROM maven:latest
 RUN mkdir /usr/src/project
 COPY . /usr/src/project
 WORKDIR /usr/src/project
