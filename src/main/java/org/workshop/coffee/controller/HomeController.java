@@ -41,10 +41,14 @@ public class HomeController {
         return "index";
     }
     public List<Product> searchProduct (String input) {
-        //create sql query for product_name OR description
-        String sql = "SELECT * FROM product WHERE product_name LIKE '%" + input + "%' OR description LIKE '%" + input + "%'";
-        //execute query
-        List<Product> products = em.createNativeQuery(sql, Product.class).getResultList();
+        //create sql query for product_name OR description using a prepared statement
+        String sql = "SELECT * FROM product WHERE product_name LIKE ? OR description LIKE ?";
+        //create a native query
+        List<Product> products = em.createNativeQuery(sql, Product.class)
+                .setParameter(1, "%" + input + "%")
+                .setParameter(2, "%" + input + "%")
+                .getResultList();
         return products;
+
     }
 }
