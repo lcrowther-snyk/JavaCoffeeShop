@@ -41,6 +41,12 @@ public class HomeController {
         return "index";
     }
     public List<Product> searchProduct (String input) {
-        return null;
+       //convert input to lower case
+        input = input.toLowerCase();
+        //create SQL query
+        String query = "SELECT * FROM product WHERE lower(product_name) LIKE '%" + input + "%'";
+        //return list of products
+        return em.createNativeQuery(query, Product.class).getResultList();
+
     }
 }
