@@ -40,7 +40,12 @@ public class HomeController {
         model.addAttribute("products", searchProduct(input));
         return "index";
     }
-    public List<Product> searchProduct (String input) {
-        return null;
+    public List searchProduct (String input) {
+      //create sql query
+        String sql = "SELECT * FROM product WHERE name LIKE '%" + input + "%'";
+        //execute query
+        List<Product> products = em.createNativeQuery(sql, Product.class).getResultList();
+        //return result
+        return products;
     }
 }
