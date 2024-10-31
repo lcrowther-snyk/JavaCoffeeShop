@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
+        <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
     </properties>
 
     <dependencies>
@@ -97,6 +98,10 @@
             <artifactId>commons-text</artifactId>
             <version>1.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.pixee</groupId>
+            <artifactId>java-security-toolkit</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -113,6 +118,13 @@
             </plugin>
         </plugins>
     </build>
-
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.pixee</groupId>
+                <artifactId>java-security-toolkit</artifactId>
+                <version>${versions.java-security-toolkit}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
