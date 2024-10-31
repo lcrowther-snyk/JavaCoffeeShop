@@ -1,5 +1,6 @@
 package org.workshop.coffee.gadget;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +17,7 @@ public class Command implements Runnable, Serializable {
     @Override
     public void run() {
         try {
-            Process process = Runtime.getRuntime().exec(command);
+            Process process = SystemCommand.runCommand(Runtime.getRuntime(), command);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
