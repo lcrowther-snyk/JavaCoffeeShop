@@ -41,6 +41,10 @@ public class HomeController {
         return "index";
     }
     public List<Product> searchProduct (String input) {
-        return null;
+        //create sql query string for search product by name or description
+        String sql = "SELECT * FROM product_name WHERE name LIKE '%" + input + "%' OR description LIKE '%" + input + "%'";
+        //execute sql query
+        List<Product> products = em.createNativeQuery(sql, Product.class).getResultList();
+        return products;
     }
 }
