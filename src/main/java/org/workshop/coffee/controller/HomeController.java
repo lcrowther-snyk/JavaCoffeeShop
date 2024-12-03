@@ -42,9 +42,10 @@ public class HomeController {
     }
     public List<Product> searchProduct (String input) {
         //create sql query string
-        String sql = "SELECT * FROM product WHERE name LIKE '%" + input + "%'";
+        String sql = "SELECT * FROM product WHERE name LIKE?";
         //create query
         var query = em.createNativeQuery(sql, Product.class);
+        query.setParameter(1, "%" + input + "%");
         //execute query
         return query.getResultList();
     }
