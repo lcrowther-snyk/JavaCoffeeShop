@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -42,8 +43,11 @@ public class HomeController {
     }
     public List<Product> searchProduct (String input) {
         //create a string query using product_name and description
-        String query = "SELECT * FROM Product p WHERE p.productName LIKE '%" + input + "%' OR p.description LIKE '%" + input + "%'";
+        String query = "SELECT * FROM Product p WHERE p.productName LIKE?1 OR p.description LIKE?2";
         //create a query
-        return em.createNativeQuery(query, Product.class).getResultList();
+        TypedQuery<Product> query1 = em.createQuery(query, Product.class);
+        query1.setParameter(1, "%" + input + "%");
+        query1.setParameter(2, "%" + input + "%");
+        return query1.getResultList();
     }
 }
