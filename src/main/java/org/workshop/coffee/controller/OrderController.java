@@ -1,5 +1,6 @@
 package org.workshop.coffee.controller;
 
+import io.github.pixee.security.Filenames;
 import org.workshop.coffee.domain.Order;
 import org.workshop.coffee.domain.OrderLine;
 import org.workshop.coffee.domain.Product;
@@ -111,7 +112,7 @@ public class OrderController {
     }
 
     private boolean fileExtIs(MultipartFile file, String ext) {
-        return file.getOriginalFilename().endsWith(ext);
+        return Filenames.toSimpleFileName(file.getOriginalFilename()).endsWith(ext);
     }
 
 
